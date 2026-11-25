@@ -1,0 +1,27 @@
+## Interface: 16001
+## Title: |cff9edb52Snack|rrun
+## Notes: Every consumable your class, spec and level should carry, priced on its own Auction House tab.
+## Author: Xpariah
+## Version: 0.1.0
+## Category: Auction House
+## IconTexture: Interface\AddOns\Snackrun\Media\Textures\Vial64
+## SavedVariables: SnackrunDB
+## SavedVariablesPerCharacter: SnackrunCharDB
+
+# Core: namespace, saved data, events
+Core\Init.lua
+
+# What exists (items give) and who wants it (specs want). New items and classes go here.
+Data\Items.lua
+Data\Specs.lua
+
+# Shopping context, list building, AH price scan
+Core\Player.lua
+Core\List.lua
+Core\Scan.lua
+
+# Look and UI: the AH tab panel and the options window
+UI\Theme.lua
+UI\Widgets.lua
+UI\Panel.lua
+UI\Options.lua

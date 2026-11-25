@@ -93,7 +93,7 @@ local function ClassOK(item, ctx)
 end
 
 local function WeaponOK(item, ctx)
-    -- ctx.weapons is nil for classes without weapon buffs by type (warlocks): nothing to filter on
+    -- ctx.weapons is nil for classes and specs without weapon buffs by type (warlocks, Holy): nothing to filter on
     return not item.weapon or not ctx.weapons or ctx.weapons == "both" or ctx.weapons == item.weapon
 end
 

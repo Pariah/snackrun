@@ -79,6 +79,10 @@ SR.ITEMS = {
     [20007] = { sec = "elixir", lvl = 40, gives = { "mp5" }, line = "mageblood", tier = 3, fx = "12 mana / 5 sec · 1 hr" },
     [250341] = { sec = "elixir", lvl = 55, gives = { "mp5" }, line = "mageblood", tier = 4, fx = "20 mana / 5 sec · 30 min" },
     [250336] = { sec = "elixir", lvl = 55, gives = { "mp5", "regen" }, fx = "10 mana + 9 health / 5 sec · 30 min" },
+    -- Paladins (Wowhead Forever paladin guides).
+    [13512] = { sec = "elixir", lvl = 50, gives = { "sp" }, slot = "flask", want = 1, fx = "+150 spell damage · 2 hr, through death" },
+    [21546] = { sec = "elixir", lvl = 40, gives = { "holy" }, fx = "+40 Holy spell damage · 30 min" },
+    [250351] = { sec = "elixir", lvl = 55, gives = { "str", "crit" }, line = "grizzly", tier = 1, fx = "+25 Str, +2% crit · 30 min" },
 
     ------------------------------------------------------------------------------------------------------- Potions
     [118] = { sec = "potion", lvl = 1, gives = { "heal" }, line = "healPot", tier = 1, fx = "70–90 health" },
@@ -131,6 +135,8 @@ SR.ITEMS = {
     [13461] = { sec = "potion", lvl = 48, gives = { "absorb" }, want = 2, fx = "Absorbs 1950–3250 arcane" },
     [9224] = { sec = "potion", lvl = 40, gives = { "slaying" }, want = 2, fx = "+180 AP vs demons · 5 min" },
     [250955] = { sec = "potion", lvl = 40, gives = { "slaying" }, want = 2, fx = "+180 AP vs beasts · 5 min" },
+    -- Own cooldown (shared with healthstones), costs health. No required level, but an endgame drop: optional, Ret only.
+    [20520] = { sec = "potion", lvl = 1, gives = { "rune" }, want = 5, fx = "900–1500 mana for 600–1000 health" },
     [250327] = { sec = "potion", lvl = 45, gives = { "detect" }, want = 2, fx = "Better stealth detection" },
 
     ---------------------------------------------------------------------------------------------------------- Food
@@ -174,10 +180,12 @@ SR.ITEMS = {
     [13935] = { sec = "food", lvl = 45, gives = { "sp" }, line = "spFood", tier = 5, slot = "fed", fx = "+28 spell damage · Well Fed" },
     [13933] = { sec = "food", lvl = 45, gives = { "sp" }, line = "spFood", tier = 5, slot = "fed", fx = "+28 spell damage · Well Fed" },
     [250079] = { sec = "food", lvl = 1, gives = { "int" }, line = "intFood", tier = 1, slot = "fed", fx = "+1 Int · Well Fed" },
+    [12224] = { sec = "food", lvl = 1, gives = { "int" }, line = "intFood", tier = 1, slot = "fed", fx = "+1 Int · Well Fed" },
     [250077] = { sec = "food", lvl = 5, gives = { "int" }, line = "intFood", tier = 2, slot = "fed", fx = "+3 Int · Well Fed" },
     [12210] = { sec = "food", lvl = 15, gives = { "int" }, line = "intFood", tier = 3, slot = "fed", fx = "+5 Int · Well Fed" },
     [12216] = { sec = "food", lvl = 25, gives = { "int" }, line = "intFood", tier = 4, slot = "fed", fx = "+10 Int · Well Fed" },
     [250073] = { sec = "food", lvl = 25, gives = { "int" }, line = "intFood", tier = 4, slot = "fed", fx = "+10 Int · Well Fed" },
+    [4457] = { sec = "food", lvl = 25, gives = { "int" }, line = "intFood", tier = 4, slot = "fed", fx = "+10 Int · Well Fed" },
     [250076] = { sec = "food", lvl = 35, gives = { "int" }, line = "intFood", tier = 5, slot = "fed", fx = "+15 Int · Well Fed" },
     [250066] = { sec = "food", lvl = 45, gives = { "int" }, line = "intFood", tier = 6, slot = "fed", fx = "+20 Int · Well Fed" },
     [250067] = { sec = "food", lvl = 45, gives = { "int" }, line = "intFood", tier = 6, slot = "fed", fx = "+20 Int · Well Fed" },
@@ -185,6 +193,8 @@ SR.ITEMS = {
     [733] = { sec = "food", lvl = 5, gives = { "speed" }, slot = "fed", fx = "+15% run speed in Westfall · Well Fed" },
     [267341] = { sec = "food", lvl = 55, gives = { "speed" }, slot = "fed", fx = "+15% run speed in Hyjal · Well Fed" },
     [7676] = { sec = "food", lvl = 5, gives = { "energy" }, class = ROGUE_DRUID, want = 6, fx = "100 energy · 5 min cooldown" },
+    -- Not Well Fed: stacks with it.
+    [12217] = { sec = "food", lvl = 25, gives = { "proc" }, want = 10, fx = "Melee hits may breathe fire · 10 min, stacks with Well Fed" },
     [4540] = { sec = "food", lvl = 1, gives = { "eat" }, line = "bread", tier = 1, fx = "59 health over 18 sec" },
     [4541] = { sec = "food", lvl = 5, gives = { "eat" }, line = "bread", tier = 2, fx = "234 health over 21 sec" },
     [4542] = { sec = "food", lvl = 15, gives = { "eat" }, line = "bread", tier = 3, fx = "531 health over 24 sec" },
@@ -198,7 +208,8 @@ SR.ITEMS = {
     [2871] = { sec = "weapon", lvl = 15, gives = { "dmg" }, line = "sharpen", tier = 3, weapon = "blade", fx = "+4 damage · 30 min · blades" },
     [7964] = { sec = "weapon", lvl = 25, gives = { "dmg" }, line = "sharpen", tier = 4, weapon = "blade", fx = "+6 damage · 30 min · blades" },
     [12404] = { sec = "weapon", lvl = 35, gives = { "dmg" }, line = "sharpen", tier = 5, weapon = "blade", fx = "+8 damage · 30 min · blades" },
-    [18262] = { sec = "weapon", lvl = 50, gives = { "crit" }, line = "sharpen", tier = 6, weapon = "blade", fx = "+2% crit · 30 min · blades" },
+    -- Elemental goes on any melee weapon (Forever tooltip; the Wowhead ret guide: "works on any weapon type").
+    [18262] = { sec = "weapon", lvl = 50, gives = { "crit" }, line = "sharpen", tier = 6, fx = "+2% crit · 30 min · any melee weapon" },
     [3239] = { sec = "weapon", lvl = 1, gives = { "dmg" }, line = "weight", tier = 1, weapon = "blunt", fx = "+2 damage · 30 min · blunt" },
     [3240] = { sec = "weapon", lvl = 5, gives = { "dmg" }, line = "weight", tier = 2, weapon = "blunt", fx = "+3 damage · 30 min · blunt" },
     [3241] = { sec = "weapon", lvl = 15, gives = { "dmg" }, line = "weight", tier = 3, weapon = "blunt", fx = "+4 damage · 30 min · blunt" },
@@ -209,6 +220,13 @@ SR.ITEMS = {
     [20746] = { sec = "weapon", lvl = 30, gives = { "sp" }, line = "wizardOil", tier = 2, fx = "+16 spell damage · 30 min" },
     [20750] = { sec = "weapon", lvl = 40, gives = { "sp" }, line = "wizardOil", tier = 3, fx = "+24 spell damage · 30 min" },
     [20749] = { sec = "weapon", lvl = 45, gives = { "sp", "spellCrit" }, line = "wizardOil", tier = 4, fx = "+36 spell damage, +1% spell crit · 30 min" },
+    -- Mana oils: `healing` only, so casters who want mp5 (warlocks) keep wizard oil as their one weapon buff.
+    [20745] = { sec = "weapon", lvl = 20, gives = { "healing" }, line = "manaOil", tier = 1, fx = "5 mana / 5 sec, +10 healing · 30 min" },
+    [20747] = { sec = "weapon", lvl = 40, gives = { "healing" }, line = "manaOil", tier = 2, fx = "10 mana / 5 sec, +20 healing · 30 min" },
+    [20748] = { sec = "weapon", lvl = 45, gives = { "healing" }, line = "manaOil", tier = 3, fx = "15 mana / 5 sec, +30 healing · 30 min" },
+    -- Proc oils (any melee weapon): equal tiers, so the cheaper one gets the Want. The ret guide ranks Shadow Oil first.
+    [3824] = { sec = "weapon", lvl = 24, gives = { "proc" }, line = "procOil", tier = 1, fx = "15% on hit: Shadow Bolt · 30 min" },
+    [3829] = { sec = "weapon", lvl = 30, gives = { "proc" }, line = "procOil", tier = 1, fx = "10% on hit: Frostbolt · 30 min" },
 
     ----------------------------------------------------------------------------------------------- Scrolls & buffs
     [3012] = { sec = "buff", lvl = 10, gives = { "agi" }, line = "scrollAgi", tier = 1, fx = "+5 Agi · 30 min" },

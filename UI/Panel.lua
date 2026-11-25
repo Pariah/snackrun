@@ -335,7 +335,7 @@ function Panel:RefreshList(list)
     if ri == 0 then
         if filter then empty = "Nothing matches that filter."
         elseif list.profile ~= "auto" then empty = "This profile is empty. Right-click items on Auto, or pick them in Edit profile."
-        elseif not list.ctx.supported then empty = "Snackrun only knows rogues so far. Custom profiles work for anyone."
+        elseif not list.ctx.supported then empty = "Snackrun only knows rogues and warriors so far. Custom profiles work for anyone."
         else empty = "Nothing to buy at this level." end
     end
     self.empty:SetText(empty or "")

@@ -27,6 +27,7 @@ SR.SECTIONS = {
 
 local ROGUE_DRUID = { ROGUE = true, DRUID = true }
 local ROGUE = { ROGUE = true }
+local WARRIOR_DRUID = { WARRIOR = true, DRUID = true }
 
 SR.ITEMS = {
     ----------------------------------------------------------------------------------------------- Elixirs & flasks
@@ -38,6 +39,7 @@ SR.ITEMS = {
     [13452] = { sec = "elixir", lvl = 46, gives = { "agi", "crit" }, line = "agiElixir", tier = 5, want = 5, fx = "+25 Agi, +2% crit · 30 min" },
     [250350] = { sec = "elixir", lvl = 55, gives = { "agi", "str" }, line = "ferocity", tier = 1, fx = "+18 Str & Agi · 30 min" },
     [2454] = { sec = "elixir", lvl = 1, gives = { "str" }, line = "strElixir", tier = 1, fx = "+4 Str · 1 hr" },
+    [6662] = { sec = "elixir", lvl = 8, gives = { "str" }, line = "strElixir", tier = 1, fx = "+8 Str · 2 min" },
     [3391] = { sec = "elixir", lvl = 20, gives = { "str" }, line = "strElixir", tier = 2, fx = "+8 Str · 1 hr" },
     [250349] = { sec = "elixir", lvl = 45, gives = { "str" }, line = "strElixir", tier = 2, fx = "+10 Str · 30 min" },
     [9206] = { sec = "elixir", lvl = 48, gives = { "str" }, line = "strElixir", tier = 3, fx = "+25 Str · 1 hr" },
@@ -69,6 +71,9 @@ SR.ITEMS = {
     [1710] = { sec = "potion", lvl = 21, gives = { "heal" }, line = "healPot", tier = 4, fx = "455–585 health" },
     [3928] = { sec = "potion", lvl = 35, gives = { "heal" }, line = "healPot", tier = 5, fx = "700–900 health" },
     [13446] = { sec = "potion", lvl = 45, gives = { "heal" }, line = "healPot", tier = 6, fx = "1050–1750 health" },
+    [5631] = { sec = "potion", lvl = 4, gives = { "rage" }, line = "ragePot", tier = 1, class = WARRIOR_DRUID, fx = "20–40 rage · 2 min cooldown" },
+    [5633] = { sec = "potion", lvl = 25, gives = { "rage" }, line = "ragePot", tier = 2, class = WARRIOR_DRUID, fx = "30–60 rage · 2 min cooldown" },
+    [13442] = { sec = "potion", lvl = 46, gives = { "rage", "str" }, line = "ragePot", tier = 3, class = WARRIOR_DRUID, fx = "45–75 rage, +60 Str · 20 sec" },
     [250938] = { sec = "potion", lvl = 5, gives = { "ap" }, line = "frenzy", tier = 1, fx = "+12 AP · 30 sec" },
     [250939] = { sec = "potion", lvl = 15, gives = { "ap" }, line = "frenzy", tier = 2, fx = "+18 AP · 30 sec" },
     [250940] = { sec = "potion", lvl = 25, gives = { "ap" }, line = "frenzy", tier = 3, fx = "+28 AP · 30 sec" },
@@ -116,19 +121,28 @@ SR.ITEMS = {
     [13928] = { sec = "food", lvl = 35, gives = { "crit" }, line = "critFood", tier = 1, slot = "fed", fx = "+1% crit · Well Fed" },
     [13929] = { sec = "food", lvl = 35, gives = { "crit" }, line = "critFood", tier = 1, slot = "fed", fx = "+1% crit · Well Fed" },
     [2681] = { sec = "food", lvl = 1, gives = { "str" }, line = "strFood", tier = 1, slot = "fed", fx = "+1 Str · Well Fed" },
-    [5480] = { sec = "food", lvl = 15, gives = { "str" }, line = "strFood", tier = 2, slot = "fed", fx = "+5 Str · Well Fed" },
-    [250065] = { sec = "food", lvl = 35, gives = { "str" }, line = "strFood", tier = 3, slot = "fed", fx = "+15 Str · Well Fed" },
-    [20452] = { sec = "food", lvl = 45, gives = { "str" }, line = "strFood", tier = 4, slot = "fed", fx = "+20 Str · Well Fed" },
-    [250071] = { sec = "food", lvl = 45, gives = { "str" }, line = "strFood", tier = 4, slot = "fed", fx = "+20 Str · Well Fed" },
-    [250070] = { sec = "food", lvl = 45, gives = { "str" }, line = "strFood", tier = 4, slot = "fed", fx = "+20 Str · Well Fed" },
+    [2888] = { sec = "food", lvl = 1, gives = { "str" }, line = "strFood", tier = 1, slot = "fed", fx = "+1 Str · Well Fed" },
+    [724] = { sec = "food", lvl = 5, gives = { "str" }, line = "strFood", tier = 2, slot = "fed", fx = "+3 Str · Well Fed" },
+    [5480] = { sec = "food", lvl = 15, gives = { "str" }, line = "strFood", tier = 3, slot = "fed", fx = "+5 Str · Well Fed" },
+    [2685] = { sec = "food", lvl = 15, gives = { "str" }, line = "strFood", tier = 3, slot = "fed", fx = "+5 Str · Well Fed" },
+    [250074] = { sec = "food", lvl = 25, gives = { "str" }, line = "strFood", tier = 4, slot = "fed", fx = "+10 Str · Well Fed" },
+    [274976] = { sec = "food", lvl = 25, gives = { "str" }, line = "strFood", tier = 4, slot = "fed", fx = "+10 Str · Well Fed" },
+    [250065] = { sec = "food", lvl = 35, gives = { "str" }, line = "strFood", tier = 5, slot = "fed", fx = "+15 Str · Well Fed" },
+    [20452] = { sec = "food", lvl = 45, gives = { "str" }, line = "strFood", tier = 6, slot = "fed", fx = "+20 Str · Well Fed" },
+    [250071] = { sec = "food", lvl = 45, gives = { "str" }, line = "strFood", tier = 6, slot = "fed", fx = "+20 Str · Well Fed" },
+    [250070] = { sec = "food", lvl = 45, gives = { "str" }, line = "strFood", tier = 6, slot = "fed", fx = "+20 Str · Well Fed" },
     [6888] = { sec = "food", lvl = 1, gives = { "sta" }, line = "staFood", tier = 1, slot = "fed", fx = "+1 Sta · Well Fed" },
     [3665] = { sec = "food", lvl = 15, gives = { "sta" }, line = "staFood", tier = 2, slot = "fed", fx = "+5 Sta · Well Fed" },
     [12215] = { sec = "food", lvl = 25, gives = { "sta" }, line = "staFood", tier = 3, slot = "fed", fx = "+10 Sta · Well Fed" },
     [17222] = { sec = "food", lvl = 35, gives = { "sta" }, line = "staFood", tier = 4, slot = "fed", fx = "+15 Sta · Well Fed" },
+    [12218] = { sec = "food", lvl = 35, gives = { "sta" }, line = "staFood", tier = 4, slot = "fed", fx = "+15 Sta · Well Fed" },
     [250068] = { sec = "food", lvl = 45, gives = { "sta" }, line = "staFood", tier = 5, slot = "fed", fx = "+20 Sta · Well Fed" },
     [21023] = { sec = "food", lvl = 45, gives = { "sta" }, line = "staFood", tier = 6, slot = "fed", fx = "+25 Sta · Well Fed" },
     [12210] = { sec = "food", lvl = 15, gives = { "int" }, line = "intFood", tier = 1, slot = "fed", fx = "+5 Int · Well Fed" },
     [12216] = { sec = "food", lvl = 25, gives = { "int" }, line = "intFood", tier = 2, slot = "fed", fx = "+10 Int · Well Fed" },
+    -- Zone run speed only: catalog items (nothing in Auto wants "speed", and they would take the Well Fed slot).
+    [733] = { sec = "food", lvl = 5, gives = { "speed" }, slot = "fed", fx = "+15% run speed in Westfall · Well Fed" },
+    [267341] = { sec = "food", lvl = 55, gives = { "speed" }, slot = "fed", fx = "+15% run speed in Hyjal · Well Fed" },
     [7676] = { sec = "food", lvl = 5, gives = { "energy" }, class = ROGUE_DRUID, want = 6, fx = "100 energy · 5 min cooldown" },
     [4540] = { sec = "food", lvl = 1, gives = { "eat" }, line = "bread", tier = 1, fx = "59 health over 18 sec" },
     [4541] = { sec = "food", lvl = 5, gives = { "eat" }, line = "bread", tier = 2, fx = "234 health over 21 sec" },

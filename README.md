@@ -12,7 +12,7 @@ talents, weapons and level: elixirs, flasks, potions, food, sharpening stones an
 - **Want** is how many of an item you like to carry. Change it once and it sticks for that character.
 - Only things you can buy on the AH: no soulbound buffs, reagents or bandages.
 
-Rogues only for now.
+Rogues and warriors for now.
 
 ## Install
 

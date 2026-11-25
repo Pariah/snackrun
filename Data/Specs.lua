@@ -10,6 +10,16 @@ SR.ROLES = {
         agi = 1, ap = 1, crit = 1, hit = 1, expertise = 1, dmg = 1, heal = 1,
         hp = 2, sta = 2, haste = 2, freedom = 2,
     },
+    -- Strength melee (Arms, Fury). Agility is optional: elixirs show, Agi food does not take the Well Fed slot.
+    meleeStr = {
+        str = 1, ap = 1, crit = 1, hit = 1, expertise = 1, dmg = 1, heal = 1,
+        agi = 2, hp = 2, sta = 2, haste = 2, freedom = 2,
+    },
+    -- Physical tank (Protection): survival first, Strength/AP/weapon damage for threat (Wowhead Forever prot guide).
+    tank = {
+        sta = 1, hp = 1, armor = 1, heal = 1, str = 1, ap = 1, dmg = 1,
+        agi = 2, hit = 2, crit = 2, regen = 2, freedom = 2,
+    },
 }
 
 -- specs: talent trees in the game's order (Forever has one spec ID per class; the "spec" is the tree with the most
@@ -25,7 +35,17 @@ SR.CLASSES = {
         extra = { energy = 1 },
         weapons = true, -- blade/blunt matters (sharpening stones vs weightstones)
     },
+    WARRIOR = {
+        id = 1,
+        specs = {
+            { key = "arms", name = "Arms", role = "meleeStr" },
+            { key = "fury", name = "Fury", role = "meleeStr" },
+            { key = "protection", name = "Protection", role = "tank" },
+        },
+        extra = { rage = 1 },
+        weapons = true,
+    },
 }
 
--- Classes Snackrun covers so far (rogues only until David says to expand).
-SR.CLASS_ORDER = { "ROGUE" }
+-- Classes Snackrun covers so far (David adds them one at a time).
+SR.CLASS_ORDER = { "ROGUE", "WARRIOR" }

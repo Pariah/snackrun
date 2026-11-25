@@ -67,12 +67,13 @@ end
 --------------------------------------------------------------------------------
 -- Matching
 --------------------------------------------------------------------------------
--- What this spec wants: its role plus the class extras. Returns { give = weight }.
+-- What this spec wants: its role, then the class extras, then the spec's own extras. Returns { give = weight }.
 function SR.Wants(ctx)
     local w = {}
     local role = ctx.spec and SR.ROLES[ctx.spec.role]
     for k, v in pairs(role or {}) do w[k] = v end
     for k, v in pairs(ctx.cls and ctx.cls.extra or {}) do w[k] = v end
+    for k, v in pairs(ctx.spec and ctx.spec.extra or {}) do w[k] = v end
     return w
 end
 
@@ -92,7 +93,8 @@ local function ClassOK(item, ctx)
 end
 
 local function WeaponOK(item, ctx)
-    return not item.weapon or ctx.weapons == "both" or ctx.weapons == item.weapon
+    -- ctx.weapons is nil for classes without weapon buffs by type (warlocks): nothing to filter on
+    return not item.weapon or not ctx.weapons or ctx.weapons == "both" or ctx.weapons == item.weapon
 end
 
 local function Usable(item, _, level)

@@ -108,11 +108,14 @@ function SR.Context()
     local specKey = c.spec or autoSpec or (cls and cls.specs[1].key)
     local spec
     for _, s in ipairs(cls and cls.specs or {}) do if s.key == specKey then spec = s end end
-    local autoWeapons = SR.DetectWeapons()
+    -- Classes with `weapons = false` (warlocks) have no blade/blunt choice: weapons is nil and the picker hides.
+    local hasWeapons = not cls or cls.weapons ~= false
+    local weapons
+    if hasWeapons then weapons = c.weapons or SR.DetectWeapons() end
     return {
         class = class, supported = cls ~= nil, cls = cls,
         spec = spec, specAuto = c.spec == nil, specDetected = autoSpec,
-        weapons = c.weapons or autoWeapons, weaponsAuto = c.weapons == nil,
+        hasWeapons = hasWeapons, weapons = weapons, weaponsAuto = c.weapons == nil,
         realLevel = real,
         level = c.level or SR.RoundUp5(real), levelAuto = c.level == nil,
     }

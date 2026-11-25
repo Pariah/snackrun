@@ -1,7 +1,8 @@
 -- What each class and spec WANTS. A want is a `gives` key from Data/Items.lua with a weight:
 --   1 = core (CORE tag; counts for one-at-a-time slots like Well Fed and flasks)
 --   2 = optional (shown, no tag)
--- Roles are templates shared by specs; `extra` adds class-only wants on top (Thistle Tea's energy).
+-- Roles are templates shared by specs; `extra` adds class-only wants on top (Thistle Tea's energy), and a spec's own
+-- `extra` adds wants only that tree has (a school of magic: Fire Power for Demonology and Destruction).
 -- Adding a class: one CLASSES entry, a role if none fits, and any items it needs.
 local _, SR = ...
 
@@ -19,6 +20,14 @@ SR.ROLES = {
     tank = {
         sta = 1, hp = 1, armor = 1, heal = 1, str = 1, ap = 1, dmg = 1,
         agi = 2, hit = 2, crit = 2, regen = 2, freedom = 2,
+    },
+    -- Spell caster (warlocks first; meant for mages too). Core is what the Wowhead Forever warlock guides put in their
+    -- "Quick Picks by Level": spell power potions, elixirs, oils and food, Mageblood, healing potions. Their prose
+    -- ranks Intellect (food and elixirs) and mana potions below that ("Life Tap covers most of your mana"), so those
+    -- are optional and Intellect food never takes the Well Fed slot. Schools (shadow, fire...) come from class/spec extras.
+    caster = {
+        sp = 1, mp5 = 1, heal = 1,
+        int = 2, mana = 2, hp = 2, spellCrit = 2, freedom = 2,
     },
 }
 
@@ -45,7 +54,17 @@ SR.CLASSES = {
         extra = { rage = 1 },
         weapons = true,
     },
+    WARLOCK = {
+        id = 9,
+        specs = {
+            { key = "affliction", name = "Affliction", role = "caster" },
+            { key = "demonology", name = "Demonology", role = "caster", extra = { fire = 2 } },
+            { key = "destruction", name = "Destruction", role = "caster", extra = { fire = 2 } },
+        },
+        extra = { shadow = 1 },
+        weapons = false, -- wizard oils go on any weapon: no Weapons picker
+    },
 }
 
 -- Classes Snackrun covers so far (David adds them one at a time).
-SR.CLASS_ORDER = { "ROGUE", "WARRIOR" }
+SR.CLASS_ORDER = { "ROGUE", "WARRIOR", "WARLOCK" }

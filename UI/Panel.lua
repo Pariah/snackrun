@@ -267,7 +267,7 @@ function Panel:RefreshRail(list)
     local name, cls, lvl = PlayerLine()
     self.who:SetText(name)
     self.whoSub:SetText(cls .. "  " .. T.Code(C.quiet) .. lvl .. "|r")
-    local overridden = c.spec ~= nil or c.weapons ~= nil or c.level ~= nil
+    local overridden = c.spec ~= nil or (ctx.hasWeapons and c.weapons ~= nil) or c.level ~= nil
     self.reset:SetEnabled(overridden)
     self.reset.text:SetTextColor(T.RGBA(overridden and C.quiet or C.disabled))
 
@@ -279,6 +279,9 @@ function Panel:RefreshRail(list)
     end
     for _, f in ipairs(self.autoOnly) do f:SetShown(auto) end
     for _, f in ipairs(self.customOnly) do f:SetShown(not auto) end
+    -- No Weapons picker for classes without weapon types (warlocks): Spec takes the whole row.
+    self.weapons:SetShown(auto and ctx.hasWeapons)
+    self.spec:SetWidth(ctx.hasWeapons and self.specHalf or self.specFull)
     if auto then
         self.spec:Set(ctx.spec and ctx.spec.name or "—", ctx.specAuto and "auto" or nil)
         local wl = { blade = "Blade", blunt = "Blunt", both = "Both" }
@@ -335,7 +338,7 @@ function Panel:RefreshList(list)
     if ri == 0 then
         if filter then empty = "Nothing matches that filter."
         elseif list.profile ~= "auto" then empty = "This profile is empty. Right-click items on Auto, or pick them in Edit profile."
-        elseif not list.ctx.supported then empty = "Snackrun only knows rogues and warriors so far. Custom profiles work for anyone."
+        elseif not list.ctx.supported then empty = "Snackrun only knows rogues, warriors and warlocks so far. Custom profiles work for anyone."
         else empty = "Nothing to buy at this level." end
     end
     self.empty:SetText(empty or "")
@@ -554,6 +557,7 @@ local function Build(AHF)
     P.autoOnly, P.customOnly = {}, {}
     local half = (inner - 6) / 2
     P.spec = W.Picker(rail, "Spec", half)
+    P.specHalf, P.specFull = half, inner
     P.spec:SetPoint("TOPLEFT", x, y)
     P.spec.tip = "Your talent tree with the most points. Pick another to shop for it."
     P.spec:SetScript("OnClick", function(self)

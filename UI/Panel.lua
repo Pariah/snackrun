@@ -279,7 +279,7 @@ function Panel:RefreshRail(list)
     end
     for _, f in ipairs(self.autoOnly) do f:SetShown(auto) end
     for _, f in ipairs(self.customOnly) do f:SetShown(not auto) end
-    -- No Weapons picker for classes without weapon types (warlocks): Spec takes the whole row.
+    -- No Weapons picker for classes or specs without weapon types (warlocks, Holy): Spec takes the whole row.
     self.weapons:SetShown(auto and ctx.hasWeapons)
     self.spec:SetWidth(ctx.hasWeapons and self.specHalf or self.specFull)
     if auto then
@@ -338,7 +338,7 @@ function Panel:RefreshList(list)
     if ri == 0 then
         if filter then empty = "Nothing matches that filter."
         elseif list.profile ~= "auto" then empty = "This profile is empty. Right-click items on Auto, or pick them in Edit profile."
-        elseif not list.ctx.supported then empty = "Snackrun only knows rogues, warriors and warlocks so far. Custom profiles work for anyone."
+        elseif not list.ctx.supported then empty = "Snackrun only knows rogues, warriors, warlocks and paladins so far. Custom profiles work for anyone."
         else empty = "Nothing to buy at this level." end
     end
     self.empty:SetText(empty or "")

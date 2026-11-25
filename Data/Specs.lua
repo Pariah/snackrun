@@ -29,6 +29,20 @@ SR.ROLES = {
         sp = 1, mp5 = 1, heal = 1,
         int = 2, mana = 2, hp = 2, spellCrit = 2, freedom = 2,
     },
+    -- Spell-power tank (Protection paladin). The Wowhead Forever prot guide's "Best Options by Level" is spell power
+    -- (potions, Arcane elixirs, wizard oil, food), Mageblood, Greater Fortitude and healing potions; its prose ranks
+    -- Strength and Agility elixirs as "offensive utility" after spell power, so those are optional (their food never
+    -- takes Well Fed). Int elixirs, mana potions and the Rough Sharpening Stone (before wizard oil, below 20) are optional.
+    spellTank = {
+        sp = 1, mp5 = 1, heal = 1, hp = 1,
+        str = 2, agi = 2, int = 2, mana = 2, dmg = 2, freedom = 2,
+    },
+    -- Healer (Holy paladin first; meant for priests and druids too). Core is everything the Wowhead Forever holy
+    -- guide names: mana and healing potions, mana oils (`healing`), Intellect food. Mageblood rides on mp5.
+    healer = {
+        mana = 1, heal = 1, healing = 1, mp5 = 1, int = 1,
+        hp = 2, freedom = 2,
+    },
 }
 
 -- specs: talent trees in the game's order (Forever has one spec ID per class; the "spec" is the tree with the most
@@ -64,7 +78,21 @@ SR.CLASSES = {
         extra = { shadow = 1 },
         weapons = false, -- wizard oils go on any weapon: no Weapons picker
     },
+    PALADIN = {
+        id = 2,
+        specs = {
+            -- Holy buys mana oils only (any weapon): no Weapons picker for this tree.
+            { key = "holy", name = "Holy", role = "healer", weapons = false },
+            { key = "protection", name = "Protection", role = "spellTank" },
+            -- Retribution is Strength melee plus spell damage (Wowhead Forever ret guide: Spellblasting over Frenzy,
+            -- Greater Arcane, Supreme Power, wizard/proc oils, spell power food, "Running out of Mana is a death
+            -- sentence"). `proc`: Shadow/Frost Oil and Dragonbreath Chili; `rune`: Dark Rune, endgame, optional.
+            { key = "retribution", name = "Retribution", role = "meleeStr",
+              extra = { sp = 1, mana = 1, holy = 1, proc = 1, rune = 2 } },
+        },
+        weapons = true, -- Protection and Retribution: stones by weapon type (a spec can say `weapons = false`)
+    },
 }
 
 -- Classes Snackrun covers so far (David adds them one at a time).
-SR.CLASS_ORDER = { "ROGUE", "WARRIOR", "WARLOCK" }
+SR.CLASS_ORDER = { "ROGUE", "WARRIOR", "WARLOCK", "PALADIN" }

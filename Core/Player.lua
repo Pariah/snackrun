@@ -108,8 +108,9 @@ function SR.Context()
     local specKey = c.spec or autoSpec or (cls and cls.specs[1].key)
     local spec
     for _, s in ipairs(cls and cls.specs or {}) do if s.key == specKey then spec = s end end
-    -- Classes with `weapons = false` (warlocks) have no blade/blunt choice: weapons is nil and the picker hides.
-    local hasWeapons = not cls or cls.weapons ~= false
+    -- Classes or specs with `weapons = false` (warlocks, Holy paladins) have no blade/blunt choice: weapons is nil
+    -- and the picker hides. A saved override stays saved and returns with a spec that has the picker.
+    local hasWeapons = (not cls or cls.weapons ~= false) and not (spec and spec.weapons == false)
     local weapons
     if hasWeapons then weapons = c.weapons or SR.DetectWeapons() end
     return {

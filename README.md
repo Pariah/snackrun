@@ -3,7 +3,7 @@
 Every consumable your character should carry, priced on its own Auction House tab. For WoW Forever.
 
 Open the Auction House and click the **Snackrun** tab along the bottom. It builds a shopping list from your class,
-talents, weapons and level: elixirs, flasks, potions, food, sharpening stones, weightstones and wizard oils,
+talents, weapons and level: elixirs, flasks, potions, food, sharpening stones, weightstones, wizard and mana oils,
 scrolls. Hit **Scan list** to price it, click a row to find that item in Blizzard's Buy tab. Snackrun never buys
 anything itself.
 
@@ -13,7 +13,7 @@ anything itself.
 - **Want** is how many of an item you like to carry. Change it once and it sticks for that character.
 - Only things you can buy on the AH: no soulbound buffs, reagents or bandages.
 
-Rogues, warriors and warlocks for now.
+Rogues, warriors, warlocks and paladins for now.
 
 ## Install
 
